@@ -10,28 +10,24 @@ const teamMembers = [
     { name: 'Barbara Ramos', role: 'Graphic Designer', photo: 'barbara-ramos-graphic-designer.jpg' }
 ];
 
-// MILESTONE 1: Stampare su console le informazioni di ogni membro
-// MILESTONE 2: Stampare le stesse informazioni su DOM sottoforma di stringhe
-// BONUS: Organizzare i singoli membri in card/schede
-
-const teamContainer = document.getElementById('ms_team_container');
-const fragment = document.createDocumentFragment();
-
-for (let i = 0; i < teamMembers.length; i++) {
-    let memberString = `Membro ${i + 1}: `;
+// Functions
+function createMemberString(member, index) {
+    let memberString = `Membro ${index + 1}: `;
     let first = true;
 
-    for (const key in teamMembers[i]) {
+    for (const key in member) {
         if (!first) {
             memberString += ', ';
         } else {
             first = false;
         }
-        memberString += `${key}: ${teamMembers[i][key]}`;
+        memberString += `${key}: ${member[key]}`;
     }
 
-    console.log(memberString);
+    return memberString;
+}
 
+function createCard(member) {
     const col = document.createElement('div');
     col.classList.add('col');
 
@@ -41,7 +37,7 @@ for (let i = 0; i < teamMembers.length; i++) {
 
     const img = document.createElement('img');
     img.classList.add('card-img-top');
-    img.src = `img/${teamMembers[i].photo}`;
+    img.src = `img/${member.photo}`;
     card.appendChild(img);
 
     const body = document.createElement('div');
@@ -49,14 +45,32 @@ for (let i = 0; i < teamMembers.length; i++) {
     card.appendChild(body);
 
     const title = document.createElement('h5');
-    title.textContent = teamMembers[i].name;
+    title.textContent = member.name;
     body.appendChild(title);
 
     const text = document.createElement('p');
-    text.textContent = teamMembers[i].role;
+    text.textContent = member.role;
     body.appendChild(text);
 
-    fragment.appendChild(col);
+    return col;
 }
 
-teamContainer.appendChild(fragment);
+// Funzione principale
+function renderTeamMembers(members) {
+    const teamContainer = document.getElementById('ms_team_container');
+    const fragment = document.createDocumentFragment();
+
+    for (let i = 0; i < members.length; i++) {
+        const member = members[i];
+        const memberString = createMemberString(member, i);
+        console.log(memberString);
+
+        const col = createCard(member);
+        fragment.appendChild(col);
+    }
+
+    teamContainer.appendChild(fragment);
+}
+
+// Richiama la funzione principale
+renderTeamMembers(teamMembers);

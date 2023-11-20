@@ -13,6 +13,7 @@ p {
 
 header p {
     width: 75%;
+    max-width: 992px;
 }
 
 .ms_card {
@@ -20,6 +21,7 @@ header p {
 }
 
 h5 {
+    font-size: 1.75rem;
     color: #7f5af0;
 }
 
