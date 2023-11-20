@@ -12,8 +12,11 @@ const teamMembers = [
 
 // MILESTONE 1: Stampare su console le informazioni di ogni membro
 // MILESTONE 2: Stampare le stesse informazioni su DOM sottoforma di stringhe
-const teamContainer = document.getElementById('ms_team_container')
+// BONUS: Organizzare i singoli membri in card/schede
+
+const teamContainer = document.getElementById('ms_team_container');
 const fragment = document.createDocumentFragment();
+
 for (let i = 0; i < teamMembers.length; i++) {
     let memberString = `Membro ${i + 1}: `;
     let first = true;
@@ -28,9 +31,32 @@ for (let i = 0; i < teamMembers.length; i++) {
     }
 
     console.log(memberString);
-    const memberInfoElement = document.createElement('p');
-    memberInfoElement.textContent = memberString;
-    fragment.appendChild(memberInfoElement);
+
+    const col = document.createElement('div');
+    col.classList.add('col');
+
+    const card = document.createElement('div');
+    card.classList.add('card', 'ms_card', 'border-3');
+    col.appendChild(card);
+
+    const img = document.createElement('img');
+    img.classList.add('card-img-top');
+    img.src = `img/${teamMembers[i].photo}`;
+    card.appendChild(img);
+
+    const body = document.createElement('div');
+    body.classList.add('card-body');
+    card.appendChild(body);
+
+    const title = document.createElement('h5');
+    title.textContent = teamMembers[i].name;
+    body.appendChild(title);
+
+    const text = document.createElement('p');
+    text.textContent = teamMembers[i].role;
+    body.appendChild(text);
+
+    fragment.appendChild(col);
 }
 
 teamContainer.appendChild(fragment);

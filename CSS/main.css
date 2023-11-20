@@ -1,0 +1,26 @@
+/* GLOBAL */
+body {
+    background-color: #242629;
+}
+
+h1 {
+    color: #fffffe;
+}
+
+p {
+    color: #94a1b2;
+}
+
+header p {
+    width: 75%;
+}
+
+.ms_card {
+    background-color: #16161a;
+}
+
+h5 {
+    color: #7f5af0;
+}
+
+/* /GLOBAL */
