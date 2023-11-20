@@ -10,7 +10,10 @@ const teamMembers = [
     { name: 'Barbara Ramos', role: 'Graphic Designer', photo: 'barbara-ramos-graphic-designer.jpg' }
 ];
 
-// MILESTONE 1: Stampo in console le informazioni di ogni membro
+// MILESTONE 1: Stampare su console le informazioni di ogni membro
+// MILESTONE 2: Stampare le stesse informazioni su DOM sottoforma di stringhe
+const teamContainer = document.getElementById('ms_team_container')
+const fragment = document.createDocumentFragment();
 for (let i = 0; i < teamMembers.length; i++) {
     let memberString = `Membro ${i + 1}: `;
     let first = true;
@@ -25,4 +28,9 @@ for (let i = 0; i < teamMembers.length; i++) {
     }
 
     console.log(memberString);
+    const memberInfoElement = document.createElement('p');
+    memberInfoElement.textContent = memberString;
+    fragment.appendChild(memberInfoElement);
 }
+
+teamContainer.appendChild(fragment);
